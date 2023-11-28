@@ -86,6 +86,10 @@ def parse_args() -> argparse.Namespace:
         help="if set, the directory `docker/official` won't be cleaned "
         "before generating",
     )
+    parser_ldf = subparsers.add_parser(
+        "generate-ldf", help="generate docker library definition file"
+    )
+    parser_ldf.add_argument("?")
     args = parser.parse_args()
     return args
 
