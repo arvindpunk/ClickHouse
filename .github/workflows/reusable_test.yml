@@ -76,8 +76,10 @@ jobs:
           CHECK_NAME=${{ inputs.test_name }}
           ${{inputs.additional_envs}}
           ${{secrets.secret_envs}}
+          DOCKER_TAG<<DOCKER_JSON
+          ${{ toJson(fromJson(inputs.data).docker_data.images) }}
+          DOCKER_JSON
           EOF
-          echo "DOCKER_TAG=$(echo '${{ toJson(fromJson(inputs.data).docker_data.images) }}' | tr -d '\n')" >> "$GITHUB_ENV"
       - name: Common setup
         uses: ./.github/actions/common_setup
         with:

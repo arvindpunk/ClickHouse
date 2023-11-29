@@ -179,7 +179,9 @@ def main():
         s3_helper, pr_info.number, pr_info.sha, test_results, additional_files, NAME
     )
     print(f"::notice ::Report url: {report_url}")
-    post_commit_status(commit, state, report_url, description, NAME, pr_info)
+    post_commit_status(
+        commit, state, report_url, description, NAME, pr_info, dump_to_file=True
+    )
 
     prepared_events = prepare_tests_results_for_clickhouse(
         pr_info,
